@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
 import MediaNews from "./collections/MediaNews";
 import NewsBlogs from "./collections/NewsBlogs";
 import Publications from "./collections/Publications";
@@ -37,7 +36,7 @@ export default buildConfig({
 
   collections: [
     Users,
-    Media,
+    
     MediaNews,
     NewsBlogs,
     Publications

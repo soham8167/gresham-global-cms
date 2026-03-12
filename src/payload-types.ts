@@ -69,6 +69,9 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'media-news': MediaNew;
+    'news-blogs': NewsBlog;
+    publications: Publication;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +81,9 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'media-news': MediaNewsSelect<false> | MediaNewsSelect<true>;
+    'news-blogs': NewsBlogsSelect<false> | NewsBlogsSelect<true>;
+    publications: PublicationsSelect<false> | PublicationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,6 +96,9 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User;
   jobs: {
     tasks: unknown;
@@ -160,6 +169,50 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media-news".
+ */
+export interface MediaNew {
+  id: string;
+  title: string;
+  excerpt?: string | null;
+  date: string;
+  slug: string;
+  mainImage: string | Media;
+  publicationLogo?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-blogs".
+ */
+export interface NewsBlog {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  type: 'news' | 'blogs';
+  mainImage: string | Media;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications".
+ */
+export interface Publication {
+  id: string;
+  title: string;
+  excerpt?: string | null;
+  slug: string;
+  tag: 'business' | 'design' | 'engineering';
+  mainImage: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -189,6 +242,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'media-news';
+        value: string | MediaNew;
+      } | null)
+    | ({
+        relationTo: 'news-blogs';
+        value: string | NewsBlog;
+      } | null)
+    | ({
+        relationTo: 'publications';
+        value: string | Publication;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +339,47 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media-news_select".
+ */
+export interface MediaNewsSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  date?: T;
+  slug?: T;
+  mainImage?: T;
+  publicationLogo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-blogs_select".
+ */
+export interface NewsBlogsSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  date?: T;
+  type?: T;
+  mainImage?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications_select".
+ */
+export interface PublicationsSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  slug?: T;
+  tag?: T;
+  mainImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -311,6 +417,16 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

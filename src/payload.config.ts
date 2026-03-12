@@ -10,6 +10,7 @@ import { Media } from "./collections/Media";
 import MediaNews from "./collections/MediaNews";
 import NewsBlogs from "./collections/NewsBlogs";
 import Publications from "./collections/Publications";
+import Events from "./collections/Events";
 
 console.log("DATABASE_URL:", process.env.DATABASE_URL);
 const filename = fileURLToPath(import.meta.url);
@@ -40,7 +41,8 @@ export default buildConfig({
     Media,
     MediaNews,
     NewsBlogs,
-    Publications
+    Publications,
+    Events
   ],
 
   editor: lexicalEditor(),

@@ -24,11 +24,16 @@ export default buildConfig({
     },
   },
 
+  // cors: [
+  //   "http://localhost:3000"
+  // ],
+
+  // serverURL: "http://localhost:3001",
   cors: [
-    "http://localhost:3000"
+    "https://gresham-global.vercel.app/"
   ],
 
-  serverURL: "http://localhost:3001",
+  serverURL: "https://gresham-global-cms.onrender.com",
 
   collections: [
     Users,

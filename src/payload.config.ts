@@ -16,7 +16,6 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
-  
   admin: {
     user: Users.slug,
     importMap: {
@@ -24,13 +23,14 @@ export default buildConfig({
     },
   },
 
-  // cors: [
-  //   "http://localhost:3000"
-  // ],
-
-  // serverURL: "http://localhost:3001",
   cors: [
-    "https://gresham-global.vercel.app/"
+    "http://localhost:3000",
+    "https://gresham-global.vercel.app"
+  ],
+
+  csrf: [
+    "http://localhost:3000",
+    "https://gresham-global.vercel.app"
   ],
 
   serverURL: "https://gresham-global-cms.onrender.com",
@@ -59,8 +59,6 @@ export default buildConfig({
 
   plugins: [],
 });
-
-
 
 
 

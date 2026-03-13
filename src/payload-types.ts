@@ -72,6 +72,7 @@ export interface Config {
     'media-news': MediaNew;
     'news-blogs': NewsBlog;
     publications: Publication;
+    events: Event;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     'media-news': MediaNewsSelect<false> | MediaNewsSelect<true>;
     'news-blogs': NewsBlogsSelect<false> | NewsBlogsSelect<true>;
     publications: PublicationsSelect<false> | PublicationsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -213,6 +215,20 @@ export interface Publication {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  title: string;
+  excerpt?: string | null;
+  date: string;
+  slug: string;
+  mainImage: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -254,6 +270,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'publications';
         value: string | Publication;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -374,6 +394,19 @@ export interface PublicationsSelect<T extends boolean = true> {
   excerpt?: T;
   slug?: T;
   tag?: T;
+  mainImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  date?: T;
+  slug?: T;
   mainImage?: T;
   updatedAt?: T;
   createdAt?: T;

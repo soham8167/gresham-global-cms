@@ -31,11 +31,13 @@ export default buildConfig({
 
   // serverURL: "http://localhost:3001",
   cors: [
-    "https://gresham-global.vercel.app"
-  ],
-
-  serverURL: "https://gresham-global-cms.onrender.com",
-
+  "http://localhost:3000",
+  "https://gresham-global.vercel.app"
+],
+  serverURL:
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001"
+    : "https://gresham-global-cms.onrender.com",
   collections: [
     Users,
     Media,

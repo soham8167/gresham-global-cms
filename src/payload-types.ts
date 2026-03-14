@@ -73,6 +73,8 @@ export interface Config {
     'news-blogs': NewsBlog;
     publications: Publication;
     events: Event;
+    jobs: Job;
+    'career-details': CareerDetail;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +88,8 @@ export interface Config {
     'news-blogs': NewsBlogsSelect<false> | NewsBlogsSelect<true>;
     publications: PublicationsSelect<false> | PublicationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    jobs: JobsSelect<false> | JobsSelect<true>;
+    'career-details': CareerDetailsSelect<false> | CareerDetailsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -229,6 +233,36 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs".
+ */
+export interface Job {
+  id: string;
+  title: string;
+  university: string;
+  location: string;
+  jobType: string;
+  workEx: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-details".
+ */
+export interface CareerDetail {
+  id: string;
+  title: string;
+  aboutJobPoints?:
+    | {
+        point: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -274,6 +308,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'jobs';
+        value: string | Job;
+      } | null)
+    | ({
+        relationTo: 'career-details';
+        value: string | CareerDetail;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -408,6 +450,34 @@ export interface EventsSelect<T extends boolean = true> {
   date?: T;
   slug?: T;
   mainImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs_select".
+ */
+export interface JobsSelect<T extends boolean = true> {
+  title?: T;
+  university?: T;
+  location?: T;
+  jobType?: T;
+  workEx?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-details_select".
+ */
+export interface CareerDetailsSelect<T extends boolean = true> {
+  title?: T;
+  aboutJobPoints?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

@@ -11,6 +11,8 @@ import MediaNews from "./collections/MediaNews";
 import NewsBlogs from "./collections/NewsBlogs";
 import Publications from "./collections/Publications";
 import Events from "./collections/Events";
+import Jobs from "./collections/Job";
+import CareerDetails from "./collections/CareersDetails";
 
 console.log("DATABASE_URL:", process.env.DATABASE_URL);
 const filename = fileURLToPath(import.meta.url);
@@ -25,11 +27,8 @@ export default buildConfig({
     },
   },
 
-  // cors: [
-  //   "http://localhost:3000"
-  // ],
-
-  // serverURL: "http://localhost:3001",
+  
+  
   cors: [
   "http://localhost:3000",
   "https://gresham-global.vercel.app"
@@ -44,7 +43,9 @@ export default buildConfig({
     MediaNews,
     NewsBlogs,
     Publications,
-    Events
+    Events,
+    Jobs,
+    CareerDetails
   ],
 
   editor: lexicalEditor(),

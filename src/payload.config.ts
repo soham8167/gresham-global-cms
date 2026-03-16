@@ -12,7 +12,6 @@ import NewsBlogs from "./collections/NewsBlogs";
 import Publications from "./collections/Publications";
 import Events from "./collections/Events";
 import Jobs from "./collections/Job";
-import CareerDetails from "./collections/CareersDetails";
 
 console.log("DATABASE_URL:", process.env.DATABASE_URL);
 const filename = fileURLToPath(import.meta.url);
@@ -47,7 +46,6 @@ export default buildConfig({
     Publications,
     Events,
     Jobs,
-    CareerDetails
   ],
 
   editor: lexicalEditor(),

@@ -1,4 +1,4 @@
-import { CollectionConfig } from "payload";
+import { CollectionConfig } from 'payload'
 import { hasRole } from '@/utils/has-role'
 
 const Events: CollectionConfig = {
@@ -26,7 +26,6 @@ const Events: CollectionConfig = {
       type: 'richText',
       required: true,
     },
-
     {
       name: 'date',
       type: 'date',
@@ -44,7 +43,51 @@ const Events: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+
+    {
+      name: 'hasVideo',
+      label: 'Video',
+      type: 'checkbox',
+    },
+
+    {
+      name: 'video',
+      admin: {
+        condition: (data) => Boolean(data.hasVideo),
+      },
+      label: 'Video Link',
+      type: 'text',
+    },
+
+    {
+      name: 'hasGallery',
+      label: 'Gallery',
+      type: 'checkbox',
+    },
+
+    {
+      name: 'gallery',
+      admin: {
+        condition: (data) => Boolean(data.hasGallery),
+      },
+      label: 'Gallery Images',
+      type: 'array',
+      fields: [
+        {
+          name: 'location',
+          type: 'text',
+          required: true,
+        },
+
+        {
+          name: 'images',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
   ],
 }
 
-export default Events;
+export default Events

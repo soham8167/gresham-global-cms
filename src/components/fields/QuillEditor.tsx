@@ -13,3 +13,4 @@ export default function QuillEditor({ path }: any) {
 
   return <ReactQuill theme="snow" value={value || ''} onChange={(content) => setValue(content)} />
 }
+   

@@ -15,28 +15,43 @@ const Jobs: CollectionConfig = {
   fields: [
     {
       name: 'title',
+      label: 'Job Title',
       type: 'text',
       required: true,
     },
     {
       name: 'university',
+      label: 'University',
       type: 'text',
       required: true,
     },
     {
       name: 'location',
+      label: 'Location',
       type: 'text',
       required: true,
     },
     {
       name: 'jobType',
+      label: 'Job Type',
       type: 'text',
       required: true,
     },
     {
       name: 'workEx',
+      label: 'Work Experience',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'aboutJob',
+      label: 'About Job',
+      type: 'text',
+      admin: {
+        components: {
+          Field: '@/components/fields/QuillEditor',
+        },
+      },
     },
   ],
 }

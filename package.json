@@ -4,17 +4,17 @@
   "description": "A blank template to get started with Payload 3.0",
   "license": "MIT",
   "type": "module",
-  
   "scripts": {
-  "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
-  "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-  "generate:importmap": "payload generate:importmap",
-  "generate:types": "payload generate:types",
-  "payload": "payload",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "payload generate:importmap",
+    "generate:types": "payload generate:types",
+    "payload": "payload",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
+    "@payloadcms/db-mongodb": "3.79.0",
     "@payloadcms/next": "3.79.0",
     "@payloadcms/richtext-lexical": "3.79.0",
     "@payloadcms/ui": "3.79.0",
@@ -23,10 +23,11 @@
     "graphql": "^16.8.1",
     "next": "15.4.11",
     "payload": "3.79.0",
+    "quill": "^2.0.3",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "sharp": "0.34.2",
-    "@payloadcms/db-mongodb": "3.79.0"
+    "react-quill-new": "^3.8.3",
+    "sharp": "0.34.2"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
@@ -45,8 +46,8 @@
     "vitest": "4.0.18"
   },
   "engines": {
-  "node": "20.x"
-},
+    "node": "20.x"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp",

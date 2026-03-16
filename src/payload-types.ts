@@ -281,6 +281,7 @@ export interface Job {
   location: string;
   jobType: string;
   workEx: string;
+  aboutJob?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -495,6 +496,7 @@ export interface JobsSelect<T extends boolean = true> {
   location?: T;
   jobType?: T;
   workEx?: T;
+  aboutJob?: T;
   updatedAt?: T;
   createdAt?: T;
 }

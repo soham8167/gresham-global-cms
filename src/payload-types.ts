@@ -135,6 +135,9 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  name: string;
+  avatar?: (string | null) | Media;
+  roles: 'admin' | 'editor' | 'viewer';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -195,7 +198,21 @@ export interface MediaNew {
 export interface NewsBlog {
   id: string;
   title: string;
-  excerpt: string;
+  details: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   date: string;
   type: 'news' | 'blogs';
   mainImage: string | Media;
@@ -224,7 +241,21 @@ export interface Publication {
 export interface Event {
   id: string;
   title: string;
-  excerpt?: string | null;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   date: string;
   slug: string;
   mainImage: string | Media;
@@ -364,6 +395,9 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  avatar?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -419,7 +453,7 @@ export interface MediaNewsSelect<T extends boolean = true> {
  */
 export interface NewsBlogsSelect<T extends boolean = true> {
   title?: T;
-  excerpt?: T;
+  details?: T;
   date?: T;
   type?: T;
   mainImage?: T;
@@ -446,7 +480,7 @@ export interface PublicationsSelect<T extends boolean = true> {
  */
 export interface EventsSelect<T extends boolean = true> {
   title?: T;
-  excerpt?: T;
+  description?: T;
   date?: T;
   slug?: T;
   mainImage?: T;

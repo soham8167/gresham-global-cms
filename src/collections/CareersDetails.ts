@@ -34,9 +34,3 @@ const CareerDetails: CollectionConfig = {
 };
 
 export default CareerDetails;
-
-
-
-
-
-    

@@ -22,9 +22,11 @@ export default buildConfig({
   
   admin: {
     user: Users.slug,
+    
     importMap: {
       baseDir: path.resolve(dirname),
     },
+  
   },
 
   
@@ -64,8 +66,4 @@ export default buildConfig({
 
   plugins: [],
 });
-
-
-
-
 

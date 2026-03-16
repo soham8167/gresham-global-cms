@@ -39,7 +39,7 @@ const Events: CollectionConfig = {
     {
       name: "mainImage",
       type: "upload",
-      relationTo: "media", // media collection
+      relationTo: "media", 
       required: true,
     },
   ],

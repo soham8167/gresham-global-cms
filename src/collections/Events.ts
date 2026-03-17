@@ -18,16 +18,23 @@ const Events: CollectionConfig = {
   fields: [
     {
       name: 'title',
+      label: 'Title',
       type: 'text',
       required: true,
     },
     {
       name: 'description',
-      type: 'richText',
-      required: true,
+      label: 'Description',
+      type: 'text',
+      admin: {
+        components: {
+          Field: '@/components/fields/QuillEditor',
+        },
+      },
     },
     {
       name: 'date',
+      label: 'Date',
       type: 'date',
       required: true,
     },

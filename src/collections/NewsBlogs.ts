@@ -55,6 +55,33 @@ const NewsBlogs: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'about-news-blogs',
+      label: 'About news & blogs ',
+      type: 'text',
+      admin: {
+        components: {
+          Field: '@/components/fields/QuillEditor',
+        },
+      },
+    },
+ {
+      name: 'gallery',
+      admin: {
+        condition: (data) => Boolean(data.hasGallery),
+      },
+      label: 'Gallery Images',
+      type: 'array',
+      fields: [
+
+        {
+          name: 'images',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
 
     {
       name: 'slug',

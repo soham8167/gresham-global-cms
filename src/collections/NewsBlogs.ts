@@ -95,6 +95,11 @@ const NewsBlogs: CollectionConfig = {
   admin: {
     condition: (data) => Boolean(data.hasVideo),
   },
+},
+{
+  name: "slug",
+  type: "text",
+  required: false,
 }
   ],
 };

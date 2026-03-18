@@ -58,11 +58,7 @@ const NewsBlogs: CollectionConfig = {
       required: true,
     },
 
-    {
-      name: "aboutNewsBlogs",
-      label: "About News & Blogs",
-      type: "text",
-    },
+
 
     {
       name: "hasGallery",

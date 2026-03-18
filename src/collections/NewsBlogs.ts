@@ -58,14 +58,12 @@ const NewsBlogs: CollectionConfig = {
       required: true,
     },
 
-    // ✅ FIXED FIELD NAME
     {
       name: "aboutNewsBlogs",
       label: "About News & Blogs",
       type: "text",
     },
 
-    // ✅ REQUIRED FOR CONDITION
     {
       name: "hasGallery",
       label: "Enable Gallery",
@@ -89,12 +87,7 @@ const NewsBlogs: CollectionConfig = {
       ],
     },
 
-    {
-      name: "slug",
-      type: "text",
-      required: true,
-      unique: true,
-    },
+   
   ],
 };
 

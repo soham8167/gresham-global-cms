@@ -83,7 +83,19 @@ const NewsBlogs: CollectionConfig = {
       ],
     },
 
-   
+   {
+  name: "hasVideo",
+  type: "checkbox",
+  label: "Add Video",
+},
+{
+  name: "video",
+  type: "upload",
+  relationTo: "media",
+  admin: {
+    condition: (data) => Boolean(data.hasVideo),
+  },
+}
   ],
 };
 

@@ -13,24 +13,21 @@ export default function QuillEditor(props: any) {
 
   const { value, setValue } = useField<string>({ path })
 
+  // ✅ label must be a string, not JSX
+  const labelText: string = (field.label as string) || field.name || ''
+
   return (
     <div style={{ marginBottom: '24px' }}>
-      {/* ✅ Correct label source */}
       <div style={{ marginBottom: '8px' }}>
-        <FieldLabel
-          label={
-            <>
-              <>
-              {field.label || field.name}
-              </>
-              {<span style={{ color: 'red' }}> *</span>}
-            </>
-          }
-        />
+        {/* ✅ pass string label + required marker separately */}
+        <FieldLabel label={labelText} required={field.required} />
       </div>
 
-      <ReactQuill theme="snow" value={value || ''} onChange={(content) => setValue(content)} />
+      <ReactQuill
+        theme="snow"
+        value={value || ''}
+        onChange={(content) => setValue(content)}
+      />
     </div>
   )
 }
-   

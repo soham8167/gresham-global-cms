@@ -2,15 +2,18 @@
 
 import { useAuth } from '@payloadcms/ui'
 
-// ✅ matches your Users.ts exactly — field is called "avatar"
+// ✅ avatar comes from JWT as a populated object (because saveToJWT: true)
+interface AvatarObject {
+  url?: string
+  alt?: string
+}
+
 interface UserWithAvatar {
   id: string
   name?: string
   email: string
-  avatar?: {
-    url?: string
-    alt?: string
-  }
+  // after saveToJWT: true, this is the full populated object, not just an ID
+  avatar?: AvatarObject | string | null
   roles?: string
 }
 
@@ -19,15 +22,17 @@ export default function AdminAvatar() {
 
   const typedUser = user as UserWithAvatar | null
 
-  // avatar field from your Users.ts
-  const imageUrl =
-    typedUser?.avatar &&
-    typeof typedUser.avatar === 'object' &&
-    typedUser.avatar.url
-      ? typedUser.avatar.url
-      : null
+  // ✅ safely extract URL — handles both populated object and edge cases
+  let imageUrl: string | null = null
 
-  // ✅ fallback initials from name or email
+  if (typedUser?.avatar) {
+    if (typeof typedUser.avatar === 'object' && typedUser.avatar.url) {
+      // populated object — normal case after saveToJWT: true
+      imageUrl = typedUser.avatar.url
+    }
+  }
+
+  // ✅ initials fallback from name or email
   const initials = typedUser?.name
     ? typedUser.name
         .split(' ')
@@ -55,7 +60,7 @@ export default function AdminAvatar() {
     )
   }
 
-  // ✅ fallback — red circle with initials
+  // ✅ fallback — red initials circle
   return (
     <div
       style={{

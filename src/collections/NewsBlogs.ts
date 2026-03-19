@@ -105,3 +105,5 @@ const NewsBlogs: CollectionConfig = {
 };
 
 export default NewsBlogs;
+
+

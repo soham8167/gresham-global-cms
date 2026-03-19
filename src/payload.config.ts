@@ -109,25 +109,21 @@ const dirname = path.dirname(filename);
 
 const CLOUDINARY_FOLDER = "gresham-cms";
 
-// configure cloudinary SDK
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME || "",
   api_key:    process.env.CLOUDINARY_API_KEY    || "",
   api_secret: process.env.CLOUDINARY_API_SECRET || "",
 });
 
-// ✅ Adapter MUST be a function: (args) => GeneratedAdapter
-// This is the correct Payload type signature
 const cloudinaryAdapter: Adapter = ({ collection, prefix = "" }): GeneratedAdapter => {
 
-  // ✅ UPLOAD — sends file buffer to Cloudinary
   const handleUpload: HandleUpload = async ({ data, file }) => {
     const result = await new Promise<{ secure_url: string; public_id: string }>(
       (resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             folder: CLOUDINARY_FOLDER,
-            public_id: file.filename.replace(/\.[^/.]+$/, ""), // strip extension
+            public_id: file.filename.replace(/\.[^/.]+$/, ""),
             resource_type: "auto",
             overwrite: false,
           },
@@ -139,13 +135,10 @@ const cloudinaryAdapter: Adapter = ({ collection, prefix = "" }): GeneratedAdapt
         uploadStream.end(file.buffer);
       }
     );
-
-    // save the Cloudinary URL into the document
     data.url = result.secure_url;
     return data;
   };
 
-  // ✅ DELETE — removes file from Cloudinary when deleted in CMS admin
   const handleDelete: HandleDelete = async ({ doc, filename: fname }) => {
     const publicId = `${CLOUDINARY_FOLDER}/${fname.replace(/\.[^/.]+$/, "")}`;
     try {
@@ -155,11 +148,8 @@ const cloudinaryAdapter: Adapter = ({ collection, prefix = "" }): GeneratedAdapt
     }
   };
 
-  // ✅ GENERATE URL — returns the Cloudinary URL for a given filename
   const generateURL: GenerateURL = async ({ filename: fname }) => {
-    return cloudinary.url(`${CLOUDINARY_FOLDER}/${fname}`, {
-      secure: true,
-    });
+    return cloudinary.url(`${CLOUDINARY_FOLDER}/${fname}`, { secure: true });
   };
 
   return {
@@ -168,10 +158,7 @@ const cloudinaryAdapter: Adapter = ({ collection, prefix = "" }): GeneratedAdapt
     handleDelete,
     generateURL,
     staticHandler: async (req, { params: { filename: fname } }) => {
-      // redirect to Cloudinary URL directly
-      const url = cloudinary.url(`${CLOUDINARY_FOLDER}/${fname}`, {
-        secure: true,
-      });
+      const url = cloudinary.url(`${CLOUDINARY_FOLDER}/${fname}`, { secure: true });
       return Response.redirect(url, 302);
     },
   };
@@ -185,6 +172,12 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
+
+    // ✅ THIS is the only change from your original — registers the avatar
+    avatar: {
+      Component: '@/components/AdminAvatar',
+    },
+
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -228,8 +221,8 @@ export default buildConfig({
     cloudStoragePlugin({
       collections: {
         media: {
-          adapter: cloudinaryAdapter,  // ✅ function reference, not object
-          disableLocalStorage: true,   // ✅ don't save on Render disk
+          adapter: cloudinaryAdapter,
+          disableLocalStorage: true,
           generateFileURL: async ({ filename: fname }) => {
             return cloudinary.url(`${CLOUDINARY_FOLDER}/${fname}`, {
               secure: true,

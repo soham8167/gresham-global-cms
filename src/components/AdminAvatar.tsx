@@ -5,7 +5,7 @@ import { useAuth } from '@payloadcms/ui'
 export default function AdminAvatar() {
   const { user } = useAuth()
 
-  // ✅ TEMPORARY DEBUG — open browser console and check what prints
+  //  DEBUG 
   console.log('AdminAvatar user:', JSON.stringify(user, null, 2))
   console.log('AdminAvatar avatar field:', (user as any)?.avatar)
 
@@ -27,7 +27,7 @@ export default function AdminAvatar() {
         .slice(0, 2)
     : typedUser?.email?.[0]?.toUpperCase() || '?'
 
-  // ✅ always show something so top-right is never blank
+  // always show something so top-right is never blank
   return (
     <div style={{ position: 'relative' }}>
       {imageUrl ? (
@@ -35,13 +35,16 @@ export default function AdminAvatar() {
           src={imageUrl}
           alt={typedUser?.name || 'Profile'}
           style={{
-            width: '38px',
-            height: '38px',
-            borderRadius: '50%',
+            width: '68px',
+            height: '68px',
+            borderRadius: '90%',
             objectFit: 'cover',
             border: '2px solid rgba(255,255,255,0.15)',
             display: 'block',
             cursor: 'pointer',
+            position:"relative",
+            top:'8px',
+            left:'30px'
           }}
         />
       ) : (

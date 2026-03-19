@@ -20,7 +20,9 @@ export default function QuillEditor(props: any) {
         <FieldLabel
           label={
             <>
+              <>
               {field.label || field.name}
+              </>
               {<span style={{ color: 'red' }}> *</span>}
             </>
           }

@@ -214,6 +214,13 @@ export interface NewsBlog {
   date: string;
   type: 'news' | 'blogs';
   mainImage: string | Media;
+  'about-news-blogs'?: string | null;
+  gallery?:
+    | {
+        images: string | Media;
+        id?: string | null;
+      }[]
+    | null;
   slug: string;
   updatedAt: string;
   createdAt: string;
@@ -432,6 +439,13 @@ export interface NewsBlogsSelect<T extends boolean = true> {
   date?: T;
   type?: T;
   mainImage?: T;
+  'about-news-blogs'?: T;
+  gallery?:
+    | T
+    | {
+        images?: T;
+        id?: T;
+      };
   slug?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -36,7 +36,7 @@ export default buildConfig({
 ],
   serverURL:
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3001"
+    ? "http://localhost:3002"
     : "https://gresham-global-cms.onrender.com",
   collections: [
     Users,

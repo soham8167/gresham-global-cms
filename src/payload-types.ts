@@ -234,10 +234,31 @@ export interface NewsBlog {
 export interface Publication {
   id: string;
   title: string;
-  excerpt?: string | null;
   slug: string;
+  summary?: string | null;
   tag: 'business' | 'design' | 'engineering';
   mainImage: string | Media;
+  detailsPageImage: string | Media;
+  frontSections?:
+    | {
+        title: string;
+        image: string | Media;
+        points?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  details?:
+    | {
+        detailImage: string | Media;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -460,10 +481,31 @@ export interface NewsBlogsSelect<T extends boolean = true> {
  */
 export interface PublicationsSelect<T extends boolean = true> {
   title?: T;
-  excerpt?: T;
   slug?: T;
+  summary?: T;
   tag?: T;
   mainImage?: T;
+  detailsPageImage?: T;
+  frontSections?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        points?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  details?:
+    | T
+    | {
+        detailImage?: T;
+        description?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

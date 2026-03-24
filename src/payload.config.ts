@@ -164,16 +164,14 @@ const cloudinaryAdapter: Adapter = ({ collection, prefix = "" }): GeneratedAdapt
   };
 };
 
-/* ------------------------------------------------------------------ */
-/*  PAYLOAD CONFIG                                                      */
-/* ------------------------------------------------------------------ */
+/*  PAYLOAD CONFIG  */
 
 export default buildConfig({
 
   admin: {
     user: Users.slug,
 
-    // ✅ THIS is the only change from your original — registers the avatar
+    //  THIS is the only change from your original — registers the avatar
     avatar: {
       Component: '@/components/AdminAvatar',
     },

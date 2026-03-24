@@ -84,14 +84,15 @@ const Publications: CollectionConfig = {
   },
 
   fields: [
-    // 🔹 Title
+    // Title
     {
       name: "title",
       type: "text",
       required: true,
+
     },
 
-    // 🔹 Slug (AUTO GENERATE)
+    //  Slug 
     {
       name: "slug",
       type: "text",
@@ -115,13 +116,13 @@ const Publications: CollectionConfig = {
       },
     },
 
-    // 🔹 Summary
+    //  Summary
     {
       name: "summary",
       type: "textarea",
     },
 
-    // 🔹 Tag
+    //  Tag
     {
       name: "tag",
       type: "select",
@@ -134,7 +135,7 @@ const Publications: CollectionConfig = {
       defaultValue: "business",
     },
 
-    // 🔹 Main Image
+    //  Main Image
     {
       name: "mainImage",
       type: "upload",
@@ -142,7 +143,7 @@ const Publications: CollectionConfig = {
       required: true,
     },
 
-    // 🔹 Details Page Image
+    // Details Page Image
     {
       name: "detailsPageImage",
       type: "upload",
@@ -150,14 +151,14 @@ const Publications: CollectionConfig = {
       required: true,
     },
 
-    // 🔥 FRONT SECTIONS
+    // FRONT SECTIONS
     {
       name: "frontSections",
       label: "Front Sections (Image + Title + Points)",
       type: "array",
       minRows: 1,
       fields: [
-        // ✅ FIXED NAME
+        // FIXED NAME
         {
           name: "title",
           type: "text",
@@ -186,7 +187,7 @@ const Publications: CollectionConfig = {
       ],
     },
 
-    // 🔥 DETAILS (3 items fixed)
+    //  DETAILS 
     {
       name: "details",
       label: "Details (Icon + Description)",
